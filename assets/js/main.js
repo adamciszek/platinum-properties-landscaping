@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Show the loading message
       loading.style.display = 'block';
-      console.log('Loading message displayed');
+      sentMessage.style.display = 'none';
 
       fetch(form.action, {
         method: form.method,
@@ -213,26 +213,21 @@ document.addEventListener('DOMContentLoaded', () => {
           .then(result => {
             // Hide the loading message
             loading.style.display = 'none';
-            console.log('Loading message hidden');
 
             if (result.success) {
-              sentMessage.innerText = 'Message sent!';
+              sentMessage.innerText = 'Your message has been sent. Thank you!';
               sentMessage.style.display = 'block';
-              console.log('Success message displayed');
             } else {
               sentMessage.innerText = 'There was an error sending your message. Please try again.';
               sentMessage.style.display = 'block';
-              console.log('Error message displayed');
             }
           })
           .catch(error => {
             // Hide the loading message
             loading.style.display = 'none';
-            console.log('Loading message hidden in catch block');
 
             sentMessage.innerText = 'There was an error sending your message. Please try again.';
             sentMessage.style.display = 'block';
-            console.log('Error message displayed in catch block');
           });
     });
   }
