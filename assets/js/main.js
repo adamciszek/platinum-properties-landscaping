@@ -1,11 +1,3 @@
-/**
-* Template Name: Nova
-* Template URL: https://bootstrapmade.com/nova-bootstrap-business-template/
-* Updated: Mar 17 2024 with Bootstrap v5.3.3
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-
 document.addEventListener('DOMContentLoaded', () => {
   "use strict";
 
@@ -39,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     el.addEventListener('click', function(event) {
       event.preventDefault();
       mobileNavToogle();
-    })
+    });
   });
 
   function mobileNavToogle() {
@@ -64,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
         dropDownIndicator.classList.toggle('bi-chevron-up');
         dropDownIndicator.classList.toggle('bi-chevron-down');
       }
-    })
+    });
   });
 
   /**
@@ -145,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /**
-   * Porfolio isotope and filter
+   * Portfolio isotope and filter
    */
   let portfolionIsotope = document.querySelector('.portfolio-isotope');
 
@@ -195,5 +187,54 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('load', () => {
     aos_init();
   });
+
+  /**
+   * Handle contact form submission
+   */
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent default form submission
+
+      const form = event.target;
+      const data = new FormData(form);
+      const loading = document.querySelector('.loading');
+      const sentMessage = document.querySelector('.sent-message');
+
+      // Show the loading message
+      loading.style.display = 'block';
+      console.log('Loading message displayed');
+
+      fetch(form.action, {
+        method: form.method,
+        body: data,
+      })
+          .then(response => response.json())
+          .then(result => {
+            // Hide the loading message
+            loading.style.display = 'none';
+            console.log('Loading message hidden');
+
+            if (result.success) {
+              sentMessage.innerText = 'Message sent!';
+              sentMessage.style.display = 'block';
+              console.log('Success message displayed');
+            } else {
+              sentMessage.innerText = 'There was an error sending your message. Please try again.';
+              sentMessage.style.display = 'block';
+              console.log('Error message displayed');
+            }
+          })
+          .catch(error => {
+            // Hide the loading message
+            loading.style.display = 'none';
+            console.log('Loading message hidden in catch block');
+
+            sentMessage.innerText = 'There was an error sending your message. Please try again.';
+            sentMessage.style.display = 'block';
+            console.log('Error message displayed in catch block');
+          });
+    });
+  }
 
 });
