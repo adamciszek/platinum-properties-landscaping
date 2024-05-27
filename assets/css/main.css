@@ -1042,6 +1042,11 @@ section {
   opacity: 1;
 }
 
+/* Center team members */
+.team .row {
+  justify-content: center;
+}
+
 /*--------------------------------------------------------------
 # Services Cards Section
 --------------------------------------------------------------*/
@@ -1077,6 +1082,12 @@ section {
   color: var(--color-secondary);
   margin: 0;
 }
+
+/* Center services items */
+.services-list .row {
+  justify-content: center;
+}
+
 
 /*--------------------------------------------------------------
 # Testimonials Section
