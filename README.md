@@ -1,2 +1,2 @@
-# platinum-properties-landscaping.github.io
+# platinum-properties-landscaping
 Landscaping Company Website
